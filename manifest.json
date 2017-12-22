@@ -1,0 +1,34 @@
+{
+   "applications": {
+      "gecko": {
+         "id": "breezclickonce@breezie.be"
+      }
+   },
+   "background": {
+      "scripts": [ "js/background.js" ]
+   },
+   "content_scripts": [
+      {
+         "matches": ["http://*/*", "https://*/*", "file:///*"],
+         "js": ["content_scripts/export.js"],
+         "run_at": "document_start"
+      }
+   ],
+   "description": "Enable ClickOnce support in Mozilla Firefox.",
+   "icons": {
+      "128": "icons/breezclickonce-128.png",
+      "16": "icons/breezclickonce-16.png",
+      "32": "icons/breezclickonce-32.png",
+      "48": "icons/breezclickonce-48.png",
+      "64": "icons/breezclickonce-64.png"
+   },
+   "manifest_version": 2,
+   "name": "Breez ClickOnce",
+   "homepage_url": "http://breezie.be/dev/clickonce",
+   "options_ui": {
+      "page": "options.html",
+      "browser_style": true
+    },
+   "permissions": [ "webRequest", "webRequestBlocking", "nativeMessaging", "http://*/*", "https://*/*" ],
+   "version": "1.1"
+}
