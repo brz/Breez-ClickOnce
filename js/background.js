@@ -1,7 +1,7 @@
 // Analyze request for ClickOnce URL's
 browser.webRequest.onBeforeRequest.addListener(function (details) {
     var extension = '.application';
-    if (details.url.indexOf(extension) != -1) {
+    if (details.tabId != -1 && details.url.indexOf(extension) != -1) {
         // Parse URL with regex
         var parse_url = /^(?:([A-Za-z]+):)?(\/{0,3})([0-9.\-A-Za-z]+)(?::(\d+))?(?:\/([^?#]*))?(?:\?([^#]*))?(?:#(.*))?$/;
         var result = parse_url.exec(details.url);

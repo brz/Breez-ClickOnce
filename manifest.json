@@ -30,5 +30,5 @@
       "browser_style": true
     },
    "permissions": [ "webRequest", "webRequestBlocking", "nativeMessaging", "http://*/*", "https://*/*" ],
-   "version": "1.1"
+   "version": "1.2"
 }
