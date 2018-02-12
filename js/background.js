@@ -21,8 +21,11 @@ browser.webRequest.onBeforeRequest.addListener(function (details) {
 // Open new tab with helper install instructions on initial extension install
 browser.runtime.onInstalled.addListener(function(details) {
     if (details.reason == 'install'){
-        url = browser.extension.getURL('nativeinstall.html');
-        browser.tabs.create({'url': url});
+        var nmProm = browser.runtime.sendNativeMessage('breez.clickonce.clickoncehelper', { message: "CheckStatus" });
+        nmProm.then(undefined, function(){
+            url = browser.extension.getURL('nativeinstall.html');
+            browser.tabs.create({ 'url': url });
+        });
     }
 });
 
