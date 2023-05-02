@@ -1,34 +1,36 @@
 {
-   "applications": {
+  "browser_specific_settings": {
       "gecko": {
          "id": "breezclickonce@breezie.be"
       }
    },
-   "background": {
-      "scripts": [ "js/background.js" ]
+  "name": "Breez ClickOnce",
+  "description": "Enable ClickOnce support in Mozilla Firefox.",
+  "version": "1.6",
+  "manifest_version": 3,
+  "permissions": [
+    "webRequest",
+    "webRequestBlocking",
+    "nativeMessaging",
+    "storage"
+  ],
+  "background": {
+      "scripts": [ "background.js" ]
    },
-   "content_scripts": [
-      {
-         "matches": ["http://*/*", "https://*/*", "file:///*"],
-         "js": ["content_scripts/export.js"],
-         "run_at": "document_start"
-      }
-   ],
-   "description": "Enable ClickOnce support in Mozilla Firefox.",
-   "icons": {
-      "128": "icons/breezclickonce-128.png",
-      "16": "icons/breezclickonce-16.png",
-      "32": "icons/breezclickonce-32.png",
-      "48": "icons/breezclickonce-48.png",
-      "64": "icons/breezclickonce-64.png"
-   },
-   "manifest_version": 2,
-   "name": "Breez ClickOnce",
-   "homepage_url": "http://breezie.be/dev/clickonce",
-   "options_ui": {
-      "page": "options.html",
-      "browser_style": true
-    },
-   "permissions": [ "webRequest", "webRequestBlocking", "nativeMessaging", "http://*/*", "https://*/*" ],
-   "version": "1.4"
+  "host_permissions": [
+    "*://*/*"
+  ],
+  "icons": {
+    "16": "icons/breezclickonce-16.png",
+    "32": "icons/breezclickonce-32.png",
+	"48": "icons/breezclickonce-48.png",
+    "64": "icons/breezclickonce-64.png",
+    "128": "icons/breezclickonce-128.png"
+  },
+  "content_scripts": [{
+    "matches": ["*://*/*"],
+    "js": ["content.js", "windowObjectHelper.js", "modalHelper.js"],
+    "run_at": "document_start"
+  }],
+  "web_accessible_resources": [ {"resources": [ "windowObjectHelper.js", "modalHelper.js"], "matches": ["*://*/*"] } ]
 }
